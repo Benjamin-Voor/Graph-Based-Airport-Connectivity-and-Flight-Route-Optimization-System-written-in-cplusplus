@@ -1,17 +1,17 @@
+#include "Graph.cpp"
 #include "Graph.h"
 #include "Vertex.h"
-#include "Graph.cpp"
 
-#include <string>
-#include <iostream>
 #include <fstream>
+#include <iostream>
 #include <sstream>
+#include <string>
 
 using namespace std;
 
 /*
 File name = main.cpp
-Student names = 
+Student names =
   Benjamin Alexander Voor
   Brian
   Robbie
@@ -19,54 +19,65 @@ Course number = COP3415.02
 Date of last modification = [due date]
 */
 
-
 int main() {
   // https://www.geeksforgeeks.org/csv-file-management-using-c/#
-  
+
   std::fstream fin; // same as infile
   fin.open("airports.csv", std::fstream::in);
   // 2 different ways to check stream for error opening file:
-  if ( fin.is_open() || (fin.rdstate() & std::ifstream::failbit ) != 0 ) {
-    std::cout << "\'airports.csv\' is not opened" << std::endl;
+  if (fin.is_open() || (fin.rdstate() & std::ifstream::failbit) != 0) {
+    std::cout << "error: \'airports.csv\' is not opened!" << std::endl;
   }
 
-
-  
   std::string line, word;
-  
-  // read an entire row and 
+
+  // read an entire row and
   // store it in a string variable 'line'
   std::getline(fin, line);
 
   // Used for breaking words
   std::stringstream s(line);
-  
-  std::getline(s,word,',');
+
+  std::getline(s, word, ',');
   const std::string ORIGIN_AIRPORT = word;
-  std::getline(s,word,',');
+  std::getline(s, word, ',');
   const std::string DESTINATION_AIRPORT = word;
-  std::getline(s,word,',');
+  std::getline(s, word, ',');
   const std::string ORIGIN_CITY = word;
-  std::getline(s,word,',');
+  std::getline(s, word, ',');
   const std::string DESTINATION_CITY = word;
-  std::getline(s,word,',');
+  std::getline(s, word, ',');
   const std::string DISTANCE = word;
-  std::getline(s,word,',');
+  std::getline(s, word, ',');
   const std::string COST = word;
+
+  Graph<std::string> airports;
   
+  //Repeat
+  while (getline(fin, line)) {
+    std::stringstream s(line);
+    std::getline(s, word, ',');
+    Vertex<std::string> Origin_airport(word);
+    airports.insert_vertex(Origin_airport);
+    Vertex<std::string> Destination_airport(word);
+    airports.insert_vertex(Destination_airport);
+    // TODO: Finish creating graph.
+      // Need another vertex for cities
+      // Need another edge for costs
+  }
   
   
   
   fin.close();
   /*
   Inspiration from testGraphs.cpp
-  Vertex<std::string> v("SFO"); 
-  Vertex<std::string> v2("LAX"); 
-  Vertex<std::string> v3("DFW"); 
-  Vertex<std::string> v4("ORD"); 
-  Vertex<std::string> v5("JFK"); 
-  Vertex<std::string> v6("BOS"); 
-  Vertex<std::string> v7("MIA"); 
+  Vertex<std::string> v("SFO");
+  Vertex<std::string> v2("LAX");
+  Vertex<std::string> v3("DFW");
+  Vertex<std::string> v4("ORD");
+  Vertex<std::string> v5("JFK");
+  Vertex<std::string> v6("BOS");
+  Vertex<std::string> v7("MIA");
 
   Graph<std::string> airports;
 
@@ -91,12 +102,12 @@ int main() {
   airports.add_edge(v2, v3, 1235);
   airports.add_edge(v7, v3, 1121);
   airports.add_edge(v4, v5, 740);
-  
+
   airports.print();
 
   std::cout << '\n';
   std::cout << airports.dijkstra_shortest_path(v7, v);
   */
-  
+
   return 0;
 }
