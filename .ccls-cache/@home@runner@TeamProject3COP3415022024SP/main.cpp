@@ -27,7 +27,7 @@ int main() {
   std::fstream fin; // same as infile
   fin.open("airports.csv", std::fstream::in);
   // 2 different ways to check stream for error opening file:
-  if (fin.is_open() || (fin.rdstate() & std::ifstream::failbit) != 0) {
+  if (!fin.is_open() || (fin.rdstate() & std::ifstream::failbit) != 0) {
     std::cout << "error: \'airports.csv\' is not opened!" << std::endl;
   }
   
