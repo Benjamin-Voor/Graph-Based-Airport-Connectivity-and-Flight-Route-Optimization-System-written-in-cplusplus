@@ -19,6 +19,8 @@ Course number = COP3415.02
 Date of last modification = [due date]
 */
 
+
+
 int main() {
   // https://www.geeksforgeeks.org/csv-file-management-using-c/#
 
@@ -28,8 +30,16 @@ int main() {
   if (fin.is_open() || (fin.rdstate() & std::ifstream::failbit) != 0) {
     std::cout << "error: \'airports.csv\' is not opened!" << std::endl;
   }
+  
 
-  std::string line, word;
+  // An entire row of data with commas inside
+  // Use stringstream to break it into individual words
+  std::string line;
+  
+  // Just one variable (is it called a "datum"?)
+  // Use stoi() for "string to integer" conversion
+    // when we get to distances and costs
+  std::string word;
 
   // read an entire row and
   // store it in a string variable 'line'
@@ -37,7 +47,7 @@ int main() {
 
   // Used for breaking words
   std::stringstream s(line);
-
+  
   std::getline(s, word, ',');
   const std::string ORIGIN_AIRPORT = word;
   std::getline(s, word, ',');
@@ -50,17 +60,19 @@ int main() {
   const std::string DISTANCE = word;
   std::getline(s, word, ',');
   const std::string COST = word;
+  // One line down, 384 more to go!
 
-  Graph<std::string> airports;
   
-  //Repeat
+  // TODO: add graph for cities, too
+  Graph<std::string> airports;
+
   while (getline(fin, line)) {
     std::stringstream s(line);
-    std::getline(s, word, ',');
-    Vertex<std::string> Origin_airport(word);
-    airports.insert_vertex(Origin_airport);
-    Vertex<std::string> Destination_airport(word);
-    airports.insert_vertex(Destination_airport);
+    std::getline(s, word, ','); // the first word is the origin airport
+    Vertex<std::string> Origin_airport(word); // convert string to vertex
+    airports.insert_vertex(Origin_airport); // insert origin airport vertex into the graph of all airports
+    Vertex<std::string> Destination_airport(word); // the second word is the destination airport
+    airports.insert_vertex(Destination_airport); // insert destination airport vertex into the graph of all airports
     // TODO: Finish creating graph.
       // Need another vertex for cities
       // Need another edge for costs
@@ -68,7 +80,7 @@ int main() {
   
   
   
-  fin.close();
+  fin.close(); // this must happen, rain or shine
   /*
   Inspiration from testGraphs.cpp
   Vertex<std::string> v("SFO");
