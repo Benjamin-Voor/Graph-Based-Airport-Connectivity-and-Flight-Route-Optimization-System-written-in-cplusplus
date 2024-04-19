@@ -65,19 +65,47 @@ int main() {
   
   // TODO: add graph for cities, too
   Graph<std::string> airports;
-
-  while (getline(fin, line)) {
+  // Graph<std::string> cities;
+  
+  while(getline(fin, line)) {
     std::stringstream s(line);
     std::getline(s, word, ','); // the first word is the origin airport
     Vertex<std::string> Origin_airport(word); // convert string to vertex
+    // std::cout << ORIGIN_AIRPORT << ": " << word << std::endl;
     airports.insert_vertex(Origin_airport); // insert origin airport vertex into the graph of all airports
-    Vertex<std::string> Destination_airport(word); // the second word is the destination airport
+
+    std::getline(s, word, ','); // the second word is the destination airport
+    // std::cout << DESTINATION_AIRPORT << ": " << word << std::endl;
+    Vertex<std::string> Destination_airport(word); // convert string to vertex
     airports.insert_vertex(Destination_airport); // insert destination airport vertex into the graph of all airports
+
+    std::getline(s, word, '\"'); // dummy
+    std::getline(s, word, '\"');
+    // std::cout << ORIGIN_CITY << ": " << word << std::endl;
+    // Vertex<std::string> Origin_city(word);
+
+    std::getline(s, word, ','); // dummy
+    std::getline(s, word, '\"'); // dummy
+    std::getline(s, word, '\"');
+    // std::cout << DESTINATION_CITY << ": " << word << std::endl;
+    // Vertex<std::string> Destination_city(word);
+    std::getline(s, word, ','); // dummy
+
+    std::getline(s, word, ',');
+    int Distance = stoi(word);
+    // std::cout << "Distance: " << Distance << std::endl;
+    airports.add_edge(Origin_airport, Destination_airport, Distance);
+
+    std::getline(s, word, ',');
+    // int Cost = stoi(word);
+    // std::cout << "Cost: " << Cost << std::endl;
+    // airports_costs.add_edge(Origin_airport, Destination_airport, Cost);
+    
     // TODO: Finish creating graph.
       // Need another vertex for cities
       // Need another edge for costs
   }
-  
+  airports.print();
   
   
   fin.close(); // this must happen, rain or shine
