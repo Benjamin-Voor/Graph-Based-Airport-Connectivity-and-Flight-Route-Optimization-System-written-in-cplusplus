@@ -19,26 +19,30 @@ Course number = COP3415.02
 Date of last modification = [due date]
 */
 
-
+bool isFinOpened(std::fstream *fin) {
+  // 2 different ways to check stream for error opening file:
+  if (!fin->is_open() || (fin->rdstate() & std::ifstream::failbit) != 0) {
+    std::cout << "error: \'airports.csv\' is not opened!" << std::endl;
+    return false;
+  }
+  std::cout << "\'airports.csv\' is successfully opened!" << std::endl;
+  return true;
+}
 
 int main() {
   // https://www.geeksforgeeks.org/csv-file-management-using-c/#
 
   std::fstream fin; // same as infile
   fin.open("airports.csv", std::fstream::in);
-  // 2 different ways to check stream for error opening file:
-  if (!fin.is_open() || (fin.rdstate() & std::ifstream::failbit) != 0) {
-    std::cout << "error: \'airports.csv\' is not opened!" << std::endl;
-  }
-  
+  isFinOpened(&fin);
 
   // An entire row of data with commas inside
   // Use stringstream to break it into individual words
   std::string line;
-  
+
   // Just one variable (is it called a "datum"?)
   // Use stoi() for "string to integer" conversion
-    // when we get to distances and costs
+  // when we get to distances and costs
   std::string word;
 
   // read an entire row and
@@ -47,7 +51,7 @@ int main() {
 
   // Used for breaking words
   std::stringstream s(line);
-  
+
   std::getline(s, word, ',');
   const std::string ORIGIN_AIRPORT = word;
   std::getline(s, word, ',');
@@ -62,52 +66,56 @@ int main() {
   const std::string COST = word;
   // One line down, 384 more to go!
 
-  
   // TODO: add graph for cities, too
   Graph<std::string> airports;
   // Graph<std::string> cities;
-  
-  while(getline(fin, line)) {
+
+  while (getline(fin, line)) {
     std::stringstream s(line);
     std::getline(s, word, ','); // the first word is the origin airport
     Vertex<std::string> Origin_airport(word); // convert string to vertex
-    // std::cout << ORIGIN_AIRPORT << ": " << word << std::endl;
-    airports.insert_vertex(Origin_airport); // insert origin airport vertex into the graph of all airports
+    airports.insert_vertex(Origin_airport); // insert origin airport vertex into
+                                            // the graph of all airports
 
     std::getline(s, word, ','); // the second word is the destination airport
-    // std::cout << DESTINATION_AIRPORT << ": " << word << std::endl;
     Vertex<std::string> Destination_airport(word); // convert string to vertex
-    airports.insert_vertex(Destination_airport); // insert destination airport vertex into the graph of all airports
+    airports.insert_vertex(
+        Destination_airport); // insert destination airport vertex into the
+                              // graph of all airports
 
     std::getline(s, word, '\"'); // dummy
     std::getline(s, word, '\"');
-    // std::cout << ORIGIN_CITY << ": " << word << std::endl;
     // Vertex<std::string> Origin_city(word);
 
-    std::getline(s, word, ','); // dummy
+    std::getline(s, word, ',');  // dummy
     std::getline(s, word, '\"'); // dummy
     std::getline(s, word, '\"');
-    // std::cout << DESTINATION_CITY << ": " << word << std::endl;
+    std::cout << DESTINATION_CITY << ": " << word << std::endl;
     // Vertex<std::string> Destination_city(word);
     std::getline(s, word, ','); // dummy
 
     std::getline(s, word, ',');
     int Distance = stoi(word);
-    // std::cout << "Distance: " << Distance << std::endl;
     airports.add_edge(Origin_airport, Destination_airport, Distance);
 
     std::getline(s, word, ',');
-    // int Cost = stoi(word);
-    // std::cout << "Cost: " << Cost << std::endl;
+    int Cost = stoi(word);
     // airports_costs.add_edge(Origin_airport, Destination_airport, Cost);
     
+    std::cout << ORIGIN_AIRPORT << ": " << word << std::endl;
+    std::cout << DESTINATION_AIRPORT << ": " << word << std::endl;
+    std::cout << ORIGIN_CITY << ": " << word << std::endl;
+    std::cout << DISTANCE << ": " << Distance << std::endl;
+    std::cout << COST << ": " << Cost << std::endl;
+
     // TODO: Finish creating graph.
-      // Need another vertex for cities
-      // Need another edge for costs
+    // Need another vertex for cities
+    // Need another edge for costs
+    
+    std::cout << std::endl;
   }
-  airports.print();
-  
-  
+  // airports.print();
+
   fin.close(); // this must happen, rain or shine
   /*
   Inspiration from testGraphs.cpp

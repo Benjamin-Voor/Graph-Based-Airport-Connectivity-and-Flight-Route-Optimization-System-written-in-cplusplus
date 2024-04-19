@@ -3,7 +3,7 @@
 #include "MinHeap.h"
 
 #include <iostream>
-#include <queue>
+#include "Queue.h"
 #include <unistd.h>
 #define INT_MAX 1000
 
@@ -58,9 +58,9 @@ template <typename T> void Graph<T>::DFS(Vertex<T> &ver) {
   clean_visited();
 }
 
-template <typename T> void print_queue(std::queue<Vertex<T>> q) {
+template <typename T> void print_queue(Queue<Vertex<T>> q) {
   while (!q.empty()) {
-    std::cout << q.front().getData() << " ";
+    std::cout << q.front() << " ";
     q.pop();
   }
   std::cout << std::endl;
@@ -73,7 +73,7 @@ template <typename T> void Graph<T>::BFS(Vertex<T> &ver) {
   if (i == -1) {
     throw std::string("BFS: Vertex is not in the graph");
   }
-  std::queue<int> q;
+  Queue<int> q;
   q.push(i);
   vertices[i].setVisited(true);
 
