@@ -2,10 +2,42 @@
   "files": {
     "main.cpp": [
       {
-        "id": "5f00cabc-9552-49ec-aa37-2fca88d26888",
-        "line": 99,
-        "version": 5395,
-        "index": 3001
+        "id": "914831d9-c23d-4c35-93a2-27053b39abcb",
+        "line": 26,
+        "version": 6243,
+        "index": 440
+      },
+      {
+        "id": "13bc74ed-1be2-4211-b426-01f18b1a5ef7",
+        "line": 29,
+        "version": 6243,
+        "index": 590
+      },
+      {
+        "id": "b2444d6f-ef5b-447d-a09b-30c60c92cf58",
+        "line": 29,
+        "version": 6243,
+        "index": 590
+      },
+      {
+        "id": "3ec9ad5c-79d7-4ca2-b34d-1194dcbccae9",
+        "line": 29,
+        "version": 6243,
+        "index": 590
+      },
+      {
+        "id": "adb1bade-97ad-4337-a793-7a20e52b85b2",
+        "line": 29,
+        "version": 6243,
+        "index": 590
+      }
+    ],
+    "task1.h": [
+      {
+        "id": "25ada2df-8d4e-49b5-b722-6d06fcb596bc",
+        "line": 18,
+        "version": 78,
+        "index": 496
       }
     ]
   }

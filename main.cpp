@@ -1,123 +1,33 @@
-#include "Graph.cpp"
+// #include "Graph.cpp"
 #include "Graph.h"
-#include "Vertex.h"
+//#include "Vertex.h"
+#include "task1.h"
 
-#include <fstream>
+// #include <fstream>
 #include <iostream>
-#include <sstream>
+// #include <sstream>
 #include <string>
 
-using namespace std;
+//using namespace std;
 
 /*
 File name = main.cpp
 Student names =
   Benjamin Alexander Voor
-  Brian
-  Robbie
+  Brian Tran
+  Robert Baumgarten
 Course number = COP3415.02
 Date of last modification = [due date]
 */
 
-bool isFinOpened(std::fstream *fin) {
-  // 2 different ways to check stream for error opening file:
-  if (!fin->is_open() || (fin->rdstate() & std::ifstream::failbit) != 0) {
-    std::cout << "error: \'airports.csv\' is not opened!" << std::endl;
-    return false;
-  }
-  std::cout << "\'airports.csv\' is successfully opened!" << std::endl;
-  return true;
-}
 
 int main() {
   // https://www.geeksforgeeks.org/csv-file-management-using-c/#
-
-  std::fstream fin; // same as infile
-  fin.open("airports.csv", std::fstream::in);
-  isFinOpened(&fin);
-
-  // An entire row of data with commas inside
-  // Use stringstream to break it into individual words
-  std::string line;
-
-  // Just one variable (is it called a "datum"?)
-  // Use stoi() for "string to integer" conversion
-  // when we get to distances and costs
-  std::string word;
-
-  // read an entire row and
-  // store it in a string variable 'line'
-  std::getline(fin, line);
-
-  // Used for breaking words
-  std::stringstream s(line);
-
-  std::getline(s, word, ',');
-  const std::string ORIGIN_AIRPORT = word;
-  std::getline(s, word, ',');
-  const std::string DESTINATION_AIRPORT = word;
-  std::getline(s, word, ',');
-  const std::string ORIGIN_CITY = word;
-  std::getline(s, word, ',');
-  const std::string DESTINATION_CITY = word;
-  std::getline(s, word, ',');
-  const std::string DISTANCE = word;
-  std::getline(s, word, ',');
-  const std::string COST = word;
-  // One line down, 384 more to go!
-
-  // TODO: add graph for cities, too
-  Graph<std::string> airports;
-  // Graph<std::string> cities;
-
-  while (getline(fin, line)) {
-    std::stringstream s(line);
-    std::getline(s, word, ','); // the first word is the origin airport
-    Vertex<std::string> Origin_airport(word); // convert string to vertex
-    airports.insert_vertex(Origin_airport); // insert origin airport vertex into
-                                            // the graph of all airports
-
-    std::getline(s, word, ','); // the second word is the destination airport
-    Vertex<std::string> Destination_airport(word); // convert string to vertex
-    airports.insert_vertex(
-        Destination_airport); // insert destination airport vertex into the
-                              // graph of all airports
-
-    std::getline(s, word, '\"'); // dummy
-    std::getline(s, word, '\"');
-    // Vertex<std::string> Origin_city(word);
-
-    std::getline(s, word, ',');  // dummy
-    std::getline(s, word, '\"'); // dummy
-    std::getline(s, word, '\"');
-    std::cout << DESTINATION_CITY << ": " << word << std::endl;
-    // Vertex<std::string> Destination_city(word);
-    std::getline(s, word, ','); // dummy
-
-    std::getline(s, word, ',');
-    int Distance = stoi(word);
-    airports.add_edge(Origin_airport, Destination_airport, Distance);
-
-    std::getline(s, word, ',');
-    int Cost = stoi(word);
-    // airports_costs.add_edge(Origin_airport, Destination_airport, Cost);
-    
-    std::cout << ORIGIN_AIRPORT << ": " << word << std::endl;
-    std::cout << DESTINATION_AIRPORT << ": " << word << std::endl;
-    std::cout << ORIGIN_CITY << ": " << word << std::endl;
-    std::cout << DISTANCE << ": " << Distance << std::endl;
-    std::cout << COST << ": " << Cost << std::endl;
-
-    // TODO: Finish creating graph.
-    // Need another vertex for cities
-    // Need another edge for costs
-    
-    std::cout << std::endl;
-  }
-  // airports.print();
-
-  fin.close(); // this must happen, rain or shine
+  std::cout << "main start" << std::endl;
+  const std::string AIRPORTSCSV = "airports.csv";
+  Graph<std::string> airports = task_1(&AIRPORTSCSV);
   /*
+  
   Inspiration from testGraphs.cpp
   Vertex<std::string> v("SFO");
   Vertex<std::string> v2("LAX");

@@ -54,7 +54,7 @@ void Queue<T>::pop() {
 
 template<typename T>
 void Queue<T>::print() const {
-    if (emtpy()) {
+    if (empty()) {
         std::cout << "Empty\n";
         return;
     }
