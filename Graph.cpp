@@ -21,7 +21,6 @@ void Graph<T>::insert_vertex(std::string code, std::string city,
   if (get_vertex_index(v) == -1) { // if the vertex does not yet exist
     vertices.push_back(v);         // insert the vertex to the array of vertices
     int i = get_vertex_index(v) + 1;
-    std::cout << i << std::endl;
     edges.resize(i);
     for(auto&row : edges) {
       row.resize(i);
@@ -52,9 +51,6 @@ void Graph<T>::add_edge(const std::string src, const std::string dest,
     throw std::string("Add_edge: incorrect vertices");
   }
   Edge v(i1, i2, distance, cost);
-  std::cout << i1 << "hi" << std::endl;
-  std::cout << i2 << "hi" << std::endl;
-  std::cout << edges.size() << std::endl;
   edges[i1][i2] = v;
 
   /* Edge v2(i2, i1, distance); // This converts a directed graph to an
