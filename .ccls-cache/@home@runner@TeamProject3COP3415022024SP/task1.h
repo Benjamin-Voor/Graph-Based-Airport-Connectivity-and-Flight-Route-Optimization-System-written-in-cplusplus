@@ -84,7 +84,8 @@ Graph<std::string> task_1(const std::string *file) {
     std::getline(s, word, '\"');
     // Vertex<std::string> Origin_city(word);
 
-    std::getline(s, word, ',');  // dummy
+    std::getline(s, word, ','); // otheri
+    // Vertex<std::string> Origin_state(word);
     std::getline(s, word, '\"'); // dummy
     std::getline(s, word, '\"');
     // std::cout << DESTINATION_CITY << ": " << word << std::endl;

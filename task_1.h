@@ -1,5 +1,5 @@
-#ifndef TASK1_H
-#define TASK1_H
+#ifndef TASK_1_H
+#define TASK_1_H
 
 #include "Graph.cpp"
 // #include "Graph.h" // This is already included in task1.h
@@ -67,48 +67,64 @@ Graph<std::string> task_1(const std::string *file) {
   // TODO: change back to a while loop.
   // Switching between if and while is
   // an easy way to reduce compilation time
-  if (getline(fin, line)) {
+  if (getline(fin, line, '\n')) {
     std::stringstream s(line);
     std::getline(s, word, ','); // the first word is the origin airport
-    Vertex<std::string> Origin_airport(word); // convert string to vertex
-    airports.insert_vertex(Origin_airport); // insert origin airport vertex into
-                                            // the graph of all airports
+    std::string origin_airport = word;
 
+    // Destination_airport
     std::getline(s, word, ','); // the second word is the destination airport
-    Vertex<std::string> Destination_airport(word); // convert string to vertex
-    airports.insert_vertex(
-        Destination_airport); // insert destination airport vertex into the
-                              // graph of all airports
+    std::string destination_airport = word;
 
     std::getline(s, word, '\"'); // dummy
-    std::getline(s, word, '\"');
-    // Vertex<std::string> Origin_city(word);
 
-    std::getline(s, word, ',');  // dummy
-    std::getline(s, word, '\"'); // dummy
+    // Origin_city
+    std::getline(s, word, ','); // dummy
+    std::string origin_city = word;
+
+    std::getline(s, word, ' '); // dummy
+
+    // Origin_state
     std::getline(s, word, '\"');
-    // std::cout << DESTINATION_CITY << ": " << word << std::endl;
-    // Vertex<std::string> Destination_city(word);
+    std::string origin_state = word;
+    std::getline(s, word, '\"'); // dummy
+
+    // Destination_City
+    std::getline(s, word, ',');
+    std::string destination_city = word;
+
+    std::getline(s, word, ' '); // dummy
+
+    // Destination_state
+    std::getline(s, word, '\"');
+    std::string destination_state = word;
+
+    airports.insert_vertex(origin_airport, origin_city, origin_state);
+    airports.insert_vertex(destination_airport, destination_city,
+                           destination_state);
+
     std::getline(s, word, ','); // dummy
 
+    // Distance
     std::getline(s, word, ',');
-    int Distance = stoi(word);
+    int distance = stoi(word);
+
+    // Cost
     std::getline(s, word, ',');
-    int Cost = stoi(word);
-    airports.add_edge(Origin_airport, Destination_airport, Distance, Cost);
-    // airports_costs.add_edge(Origin_airport, Destination_airport, Cost);
-
-    std::cout << ORIGIN_AIRPORT << ": " << Origin_airport.getData()
-              << std::endl;
-    std::cout << DESTINATION_AIRPORT << ": " << Destination_airport.getData()
-              << std::endl;
-    // std::cout << ORIGIN_CITY << ": " << Origin_City.getData() << std::endl;
-    std::cout << DISTANCE << ": " << Distance << std::endl;
-    std::cout << COST << ": " << Cost << std::endl;
-
-    // TODO: Finish creating graph.
-    // Need another vertex for cities
-    // Need another edge for costs
+    int cost = stoi(word);
+    airports.add_edge(origin_airport, destination_airport, distance, cost);
+    /*
+    std::cout << ORIGIN_AIRPORT << ": " << origin_airport << std::endl
+              << ORIGIN_CITY << ": " << origin_city << std::endl
+              << "Origin_State"
+              << ": " << origin_state << std::endl
+              << DESTINATION_AIRPORT << ": " << destination_airport << std::endl
+              << DESTINATION_CITY << ": " << destination_city << std::endl
+              << "Destination_State"
+              << ": " << destination_state << std::endl
+              << DISTANCE << ": " << distance << std::endl
+              << COST << ": " << cost << std::endl;
+    */
 
     std::cout << std::endl;
   }
