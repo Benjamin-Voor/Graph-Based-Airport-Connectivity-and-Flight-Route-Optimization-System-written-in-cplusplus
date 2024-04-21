@@ -12,21 +12,21 @@
 
 using namespace std;
 
-bool isFinOpened(std::fstream *fin, const std::string *file) {
+bool isFinOpened(std::fstream *fin, const std::string file) {
   // 2 different ways to check stream for error opening file:
   if (!fin->is_open() || (fin->rdstate() & std::ifstream::failbit) != 0) {
-    std::cout << "error: " << *file << " is not opened!" << std::endl;
+    std::cout << "error: " << file << " is not opened!" << std::endl;
     return false;
   }
-  std::cout << *file << " is successfully opened!" << std::endl;
+  std::cout << file << " is successfully opened!" << std::endl;
   return true;
 }
 
-Graph<std::string> task_1(const std::string *file) {
+Graph<std::string> task_1(const std::string file) {
   // = airports.csv
   // same as infile
   std::fstream fin;
-  fin.open(*file, std::fstream::in);
+  fin.open(file, std::fstream::in);
   isFinOpened(&fin, file);
   // An entire row of data with commas inside
   // Use stringstream to break it into individual words
@@ -67,7 +67,7 @@ Graph<std::string> task_1(const std::string *file) {
   // TODO: change back to a while loop.
   // Switching between if and while is
   // an easy way to reduce compilation time
-  if (getline(fin, line, '\n')) {
+  while (getline(fin, line, '\n')) {
     std::stringstream s(line);
     std::getline(s, word, ','); // the first word is the origin airport
     std::string origin_airport = word;
@@ -113,6 +113,9 @@ Graph<std::string> task_1(const std::string *file) {
     std::getline(s, word, ',');
     int cost = stoi(word);
     airports.add_edge(origin_airport, destination_airport, distance, cost);
+
+
+    // TODO: comment out for the real deal
     /*
     std::cout << ORIGIN_AIRPORT << ": " << origin_airport << std::endl
               << ORIGIN_CITY << ": " << origin_city << std::endl
@@ -125,8 +128,6 @@ Graph<std::string> task_1(const std::string *file) {
               << DISTANCE << ": " << distance << std::endl
               << COST << ": " << cost << std::endl;
     */
-
-    std::cout << std::endl;
   }
   // airports.print();
   fin.close(); // this must happen, rain or shine

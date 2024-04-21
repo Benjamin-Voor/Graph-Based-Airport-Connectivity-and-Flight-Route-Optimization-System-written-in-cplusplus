@@ -3,33 +3,33 @@
     "main.cpp": [
       {
         "id": "914831d9-c23d-4c35-93a2-27053b39abcb",
-        "line": 11,
-        "version": 6293,
-        "index": 171
+        "line": 4,
+        "version": 6716,
+        "index": 75
       },
       {
         "id": "13bc74ed-1be2-4211-b426-01f18b1a5ef7",
-        "line": 11,
-        "version": 6293,
-        "index": 171
+        "line": 4,
+        "version": 6716,
+        "index": 75
       },
       {
         "id": "b2444d6f-ef5b-447d-a09b-30c60c92cf58",
-        "line": 11,
-        "version": 6293,
-        "index": 171
+        "line": 4,
+        "version": 6716,
+        "index": 75
       },
       {
         "id": "3ec9ad5c-79d7-4ca2-b34d-1194dcbccae9",
-        "line": 11,
-        "version": 6293,
-        "index": 171
+        "line": 4,
+        "version": 6716,
+        "index": 75
       },
       {
         "id": "adb1bade-97ad-4337-a793-7a20e52b85b2",
-        "line": 11,
-        "version": 6293,
-        "index": 171
+        "line": 4,
+        "version": 6716,
+        "index": 75
       }
     ],
     "task1.h": [
@@ -43,9 +43,9 @@
     "task_1.h": [
       {
         "id": "bc5f0ef6-12a5-4afb-96f0-5170fccb2058",
-        "line": 73,
-        "version": 158,
-        "index": 2094
+        "line": 60,
+        "version": 2357,
+        "index": 1705
       }
     ]
   }

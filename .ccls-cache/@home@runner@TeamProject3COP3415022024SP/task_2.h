@@ -1,6 +1,5 @@
 #ifndef TASK_2_H
 #define TASK_2_H
-#include "Graph.cpp"
 #include "Graph.h"
 #include "Vertex.h"
 
@@ -8,6 +7,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#define INT_MAX 1000
 
 using namespace std;
 
@@ -56,6 +56,6 @@ void task_2(Graph<std::string> airports, std::string origin,
     std::cout << "Shortest route from " << origin << " to " << destination << ": None" << std::endl;
   }
   // take origin vertex and destination vertex
-  dijkstra(airports, originVertex, destinationVertex);
+  //dijkstra(airports, originVertex, destinationVertex);
 }
 #endif

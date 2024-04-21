@@ -12,16 +12,20 @@ void Graph<T>::insert_vertex(std::string code, std::string city,
                              std::string state) {
   for (int i = 0; i < vertices.size(); i++) {
     if (vertices[i].getData() == code) {
-      return;
+      return; // vertex already exists
     }
   }
 
   Vertex<std::string> v(code, city, state);
 
-  if (get_vertex_index(v) == -1) {
-    vertices.push_back(v); // insert the vertex to the array of vertices
-    std::vector<Edge> tmp;
-    edges.push_back(tmp); // insert empty vector to the edges
+  if (get_vertex_index(v) == -1) { // if the vertex does not yet exist
+    vertices.push_back(v);         // insert the vertex to the array of vertices
+    int i = get_vertex_index(v) + 1;
+    std::cout << i << std::endl;
+    edges.resize(i);
+    for(auto&row : edges) {
+      row.resize(i);
+    }
   }
 }
 
@@ -41,15 +45,20 @@ void Graph<T>::add_edge(const std::string src, const std::string dest,
   Vertex<std::string> origin = getVertex(src);
   Vertex<std::string> destination = getVertex(dest);
   // Ben renamed vertices ver1, ver2 to src, dest
+  // Brian changed their types from vertices to strings
   int i1 = get_vertex_index(origin);
   int i2 = get_vertex_index(destination);
   if (i1 == -1 || i2 == -1) {
     throw std::string("Add_edge: incorrect vertices");
   }
   Edge v(i1, i2, distance, cost);
+  std::cout << i1 << "hi" << std::endl;
+  std::cout << i2 << "hi" << std::endl;
+  std::cout << edges.size() << std::endl;
+  edges[i1][i2] = v;
+
   /* Edge v2(i2, i1, distance); // This converts a directed graph to an
   undirected graph edges[i1].push_back(v); if (i1 != i2) {
-    edges[i2].push_back(v2);
   }
   */
 }
@@ -59,6 +68,7 @@ template <typename T> void Graph<T>::print() const {
     std::cout << "{ " << vertices[i].getData() << ": ";
     for (int j = 0; j < edges[i].size(); j++) {
       std::cout << '{' << vertices[edges[i][j].dest].getData() << ", ";
+      // TODO: print the other direction, because we made it directional
       std::cout << edges[i][j].distance << "} ";
     }
     std::cout << " }\n";

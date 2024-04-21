@@ -1,14 +1,15 @@
 // #include "Graph.cpp"
 #include "Graph.h"
 //#include "Vertex.h"
-#include "task1.h"
-
+#include "task_1.h"
+// #include "task_2.h"
+#include "task_5.h"
 // #include <fstream>
 #include <iostream>
 // #include <sstream>
 #include <string>
 
-//using namespace std;
+// using namespace std;
 
 /*
 File name = main.cpp
@@ -20,22 +21,22 @@ Course number = COP3415.02
 Date of last modification = [due date]
 */
 
-
 int main() {
   // https://www.geeksforgeeks.org/csv-file-management-using-c/#
-  std::cout << "main start" << std::endl;
   const std::string AIRPORTSCSV = "airports.csv";
-  Graph<std::string> airports = task_1(&AIRPORTSCSV);
+  Graph<std::string> airports = task_1(AIRPORTSCSV);
 
-  // task_2(airports, "IAD", "MIA");
+  //task_2(airports, "IAD", "MIA");
   // task_2(airports, "PIT", "ACT");
-  // task_3(airports, "ATL", "FL");
+  
+  //task_3(airports, "ATL", "FL");
+
   // task_4(airports, "IAD", "MIA", 3);
   // task_4(airports, "PIT", "ACT", 2);
   // task_5(airports);
 
   /*
-  
+
   Inspiration from testGraphs.cpp
   Vertex<std::string> v("SFO");
   Vertex<std::string> v2("LAX");
