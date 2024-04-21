@@ -68,6 +68,7 @@ void dijkstraShortestPathPrint(Graph<std::string> airports, Vertex<std::string> 
   std::cout << "\t" << distances[i_dest] << "\t" << costs[i_dest];
 }
 
+
 void task_3(Graph<std::string> airports, std::string origin, std::string destinationState) {
   Vertex<std::string> originVertex = airports.getVertex(origin);
   // find all the destination state airports and add them to an array

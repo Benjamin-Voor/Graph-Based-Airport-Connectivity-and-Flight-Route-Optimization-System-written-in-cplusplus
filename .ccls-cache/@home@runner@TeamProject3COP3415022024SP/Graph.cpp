@@ -15,7 +15,6 @@ void Graph<T>::insert_vertex(std::string code, std::string city,
       return; // vertex already exists
     }
   }
-
   Vertex<std::string> v(code, city, state);
 
   if (get_vertex_index(v) == -1) { // if the vertex does not yet exist

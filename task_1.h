@@ -67,21 +67,24 @@ Graph<std::string> task_1(const std::string file) {
   // TODO: change back to a while loop.
   // Switching between if and while is
   // an easy way to reduce compilation time
+  airports.insert_vertex("N/A", "N/A", "N/A");
+  
   while (getline(fin, line, '\n')) {
     std::stringstream s(line);
-    std::getline(s, word, ','); // the first word is the origin airport
+
+    //Origin_airport
+    std::getline(s, word, ',');
     std::string origin_airport = word;
 
     // Destination_airport
-    std::getline(s, word, ','); // the second word is the destination airport
+    std::getline(s, word, ',');
     std::string destination_airport = word;
 
     std::getline(s, word, '\"'); // dummy
 
     // Origin_city
-    std::getline(s, word, ','); // dummy
+    std::getline(s, word, ',');
     std::string origin_city = word;
-
     std::getline(s, word, ' '); // dummy
 
     // Origin_state
@@ -92,7 +95,6 @@ Graph<std::string> task_1(const std::string file) {
     // Destination_City
     std::getline(s, word, ',');
     std::string destination_city = word;
-
     std::getline(s, word, ' '); // dummy
 
     // Destination_state

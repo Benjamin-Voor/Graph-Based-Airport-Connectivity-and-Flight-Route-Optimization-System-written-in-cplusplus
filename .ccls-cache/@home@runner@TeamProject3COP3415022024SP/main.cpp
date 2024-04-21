@@ -25,7 +25,7 @@ int main() {
   // https://www.geeksforgeeks.org/csv-file-management-using-c/#
   const std::string AIRPORTSCSV = "airports.csv";
   Graph<std::string> airports = task_1(AIRPORTSCSV);
-  airpor
+  //airports.print();
   
 
   //task_2(airports, "IAD", "MIA");
