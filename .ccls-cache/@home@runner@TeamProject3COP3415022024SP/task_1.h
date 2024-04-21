@@ -1,7 +1,7 @@
 #ifndef TASK_1_H
 #define TASK_1_H
 
-#include "Graph.cpp"
+#include "Graph.cpp" // this is already included in main
 // #include "Graph.h" // This is already included in task1.h
 #include "Vertex.h"
 

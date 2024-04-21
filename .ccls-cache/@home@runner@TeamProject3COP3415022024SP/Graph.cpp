@@ -21,7 +21,7 @@ void Graph<T>::insert_vertex(std::string code, std::string city,
     vertices.push_back(v);         // insert the vertex to the array of vertices
     int i = get_vertex_index(v) + 1;
     edges.resize(i);
-    for(auto&row : edges) {
+    for (auto &row : edges) {
       row.resize(i);
     }
   }
