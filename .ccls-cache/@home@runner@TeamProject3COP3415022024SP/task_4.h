@@ -1,5 +1,5 @@
-#ifndef TASK_3_H
-#define TASK_3_H
+#ifndef TASK_4_H
+#define TASK_4_H
 
 #include "Graph.h"
 #include "MinHeap.h"
@@ -66,17 +66,10 @@ void dijkstraShortestPathPrint(Graph<std::string> airports, Vertex<std::string> 
 }
 
 
-void task_3(Graph<std::string> airports, std::string origin, std::string destinationState) {
+void task_3(Graph<std::string> airports, std::string origin, std::string destination) {
   Vertex<std::string> originVertex = airports.getVertex(origin);
-  // find all the destination state airports and add them to an array
-  vector<Vertex<std::string>> destination_state_airports;
-  for(int i = 1; i < airports.getVertices().size(); i+=2) {
-    if(airports.getVertices()[i].getState() == destinationState) {
-      destination_state_airports.push_back(airports.getVertices()[i]);
-    }
-  }
-  // use a modified Dijkstra's algorithm that does not stop after finding the shortest path for each destination state airport
-  cout << "Path\t\tLength\tCost" << endl;
+  Vertex<std::string> destinationVertex = airports.getVertex(destination);
+
   for(Vertex<std::string> dstVertex : destination_state_airports) {
     try{
       // call the modified Dijkstra's algorithm
