@@ -6,13 +6,16 @@
 
 #include <fstream>
 #include <iostream>
+//#include <climits>
 #define INT_MAX 1000
 
 using namespace std;
 
-// Task 3: Find all shortest paths between the given origin airport and all the airports in the destination state. The algorithm should output all the paths and their lengths. The algorithm should provide the appropriate message if no such paths exist. 
+// Task 4: Find the shortest path between the given origin airport and destination airport with a given number of stops. The algorithm should provide the appropriate message if such path doesn’t exist. 
 
 void dijkstraShortestPathPrint(Graph<std::string> airports, Vertex<std::string> src, Vertex<std::string> dst){
+
+  // TODO: Make a stops variable and keep track of each stop between origin and destination
 
   // set initial distances
   int i_src = airports.get_vertex_index(src);
@@ -44,13 +47,22 @@ void dijkstraShortestPathPrint(Graph<std::string> airports, Vertex<std::string> 
   for (int i = 0; i < vertices.size(); i++){
     heap.insert(Edge(i_src, i, distances[i], costs[i]));
   }
+
+  std::cout << "Shortest route from " << src.getData() << "to " << dst.getData() << "with ";
+
+  int stops = 0;
+  std::string strOne;
+  std::string strTwo;
+  std::string strThree;
+  
   while (!heap.isEmpty()){
     // get the min edge
     Edge e = heap.delete_min();
     // shortest path reached: print data
-    if (e.dest == i_dest){
+    if (e.dest == i_dest) {
       if (e.distance == INT_MAX) return;
-      std::cout << src.getData() << "->" << dst.getData() << "\t" << e.distance << "\t\t" << e.cost << endl;
+      strOne += (to_string(stops) + " stops: " + src.getData() + "->");
+      strThree += (dst.getData() + ". The length is " + to_string(e.distance) + ". The cost is " + to_string(e.cost));
     }
     if (e.distance == INT_MAX) continue;
     // update distances and costs
@@ -59,27 +71,24 @@ void dijkstraShortestPathPrint(Graph<std::string> airports, Vertex<std::string> 
       if (edge.distance + e.distance < distances[edge.dest]){
         distances[edge.dest] = edge.distance + e.distance;
         costs[edge.dest] = edge.cost + e.cost;
+        // update string two along with the number of stops
+        strTwo += (vertices[edge.dest].getData() + "->");
+        stops++;
         heap.decrease_key(edge.dest, Edge(edge.dest, edge.dest, distances[edge.dest], costs[edge.dest]));
       }
     }
   }
+  if(strOne == "") return;
+  cout << strOne << strTwo << strThree << endl;
 }
 
 
 void task_3(Graph<std::string> airports, std::string origin, std::string destination) {
-  Vertex<std::string> originVertex = airports.getVertex(origin);
-  Vertex<std::string> destinationVertex = airports.getVertex(destination);
+  Vertex<std::string> ogVertex = airports.getVertex(origin);
+  Vertex<std::string> dstVertex = airports.getVertex(destination);
 
-  for(Vertex<std::string> dstVertex : destination_state_airports) {
-    try{
-      // call the modified Dijkstra's algorithm
-    dijkstraShortestPathPrint(airports, originVertex, dstVertex);
-      } catch (const std::string& e) {
-          std::cerr << "Caught an exception: " << e << std::endl;
-      } catch (...) {
-          std::cerr << "Caught an unknown exception" << std::endl;
-      }
-  }
+  // call the modified Dijkstra's algorithm
+  dijkstraShortestPathPrint(airports, ogVertex, dstVertex);
   airports.clean_visited();
 }
 #endif

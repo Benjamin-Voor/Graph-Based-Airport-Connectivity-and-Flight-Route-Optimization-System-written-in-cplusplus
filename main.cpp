@@ -4,7 +4,8 @@
 #include "task_1.h"
 // #include "task_2.h"
 #include "task_3.h"
-// #include "task_5.h"
+//#include "task_4.h"
+//#include "task_5.h"
 // #include <fstream>
 #include <iostream>
 // #include <sstream>
@@ -15,7 +16,7 @@
 /*
 File name = main.cpp
 Student names =
-  Benjamin Alexander Voor
+  Benjamin Voor
   Brian Tran
   Robert Baumgarten
 Course number = COP3415.02
@@ -29,14 +30,15 @@ int main() {
   //airports.print();
   
 
-  //task_2(airports, "IAD", "MIA");
+  // task_2(airports, "ATL", "MIA");
   // task_2(airports, "PIT", "ACT");
   
   task_3(airports, "ATL", "FL");
+  //task_3(airports, "IAD", "FL");
 
   // task_4(airports, "IAD", "MIA", 3);
   // task_4(airports, "PIT", "ACT", 2);
-  // task_5(airports);
+  //task_5(airports);
 
   /*
 

@@ -18,7 +18,7 @@ bool isFinOpened(std::fstream *fin, const std::string file) {
     std::cout << "error: " << file << " is not opened!" << std::endl;
     return false;
   }
-  std::cout << file << " is successfully opened!" << std::endl;
+  // std::cout << file << " is successfully opened!" << std::endl;
   return true;
 }
 

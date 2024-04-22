@@ -6,6 +6,7 @@
 
 #include <fstream>
 #include <iostream>
+//#include <climits>
 #define INT_MAX 1000
 
 using namespace std;
@@ -50,7 +51,12 @@ void dijkstraShortestPathPrint(Graph<std::string> airports, Vertex<std::string> 
     // shortest path reached: print data
     if (e.dest == i_dest){
       if (e.distance == INT_MAX) return;
-      std::cout << src.getData() << "->" << dst.getData() << "\t" << e.distance << "\t\t" << e.cost << endl;
+      cout << src.getData();
+      // print path if another step exists
+      // if (e.src != i_src){
+      //   cout << "->" + vertices[e.src].getData();
+      // }
+      std::cout << "->" << dst.getData() << "\t\t" << e.distance << "\t\t\t" << e.cost << endl;
     }
     if (e.distance == INT_MAX) continue;
     // update distances and costs
@@ -70,13 +76,13 @@ void task_3(Graph<std::string> airports, std::string origin, std::string destina
   Vertex<std::string> originVertex = airports.getVertex(origin);
   // find all the destination state airports and add them to an array
   vector<Vertex<std::string>> destination_state_airports;
-  for(int i = 1; i < airports.getVertices().size(); i+=2) {
+  for(int i = 1; i < airports.getVertices().size(); i++) {
     if(airports.getVertices()[i].getState() == destinationState) {
       destination_state_airports.push_back(airports.getVertices()[i]);
     }
   }
   // use a modified Dijkstra's algorithm that does not stop after finding the shortest path for each destination state airport
-  cout << "Path\t\tLength\tCost" << endl;
+  cout << "Path\t\t\tLength\t\tCost" << endl;
   for(Vertex<std::string> dstVertex : destination_state_airports) {
     try{
       // call the modified Dijkstra's algorithm
