@@ -10,6 +10,9 @@ public:
 bool operator<(const Edge &other) const {
   return this->distance < other.distance;
 }
+bool operator>(const Edge &other) const {
+  return this->distance > other.distance;
+}
 
   int src;
   int dest;

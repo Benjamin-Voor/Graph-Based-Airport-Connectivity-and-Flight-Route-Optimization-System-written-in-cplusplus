@@ -91,6 +91,20 @@ int MinHeap<T>::min_index(int i1, int i2) const {
 }
 
 
+template<typename T>
+bool MinHeap<T>::isEmpty() const {
+    return data.empty();
+}
+
+template<typename T>
+void MinHeap<T>::decrease_key(int i, const T &val){
+    if (val > data[i]){
+        throw std::string("decrease_key: new value is bigger than the old one");
+    }
+    data[i] = val;
+    percolate_down(i);
+}
+
 // MinHeap(std::vector<T> v); {
 //     //insert the elements in the given order
 //     //heapify

@@ -3,7 +3,8 @@
 //#include "Vertex.h"
 #include "task_1.h"
 // #include "task_2.h"
-#include "task_5.h"
+#include "task_3.h"
+// #include "task_5.h"
 // #include <fstream>
 #include <iostream>
 // #include <sstream>
@@ -25,7 +26,7 @@ int main() {
   // https://www.geeksforgeeks.org/csv-file-management-using-c/#
   const std::string AIRPORTSCSV = "airports.csv";
   Graph<std::string> airports = task_1(AIRPORTSCSV);
-  //airports.print();
+  airports.print();
   
 
   //task_2(airports, "IAD", "MIA");

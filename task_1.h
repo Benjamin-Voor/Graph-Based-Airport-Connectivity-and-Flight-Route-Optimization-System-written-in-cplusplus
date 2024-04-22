@@ -56,7 +56,6 @@ Graph<std::string> task_1(const std::string file) {
   const std::string DISTANCE = word;
   std::getline(s, word, '\n');
   const std::string COST = word;
-  // This one works
   // One line down, 384 more to go!
 
   // TODO: add graph for cities, too
@@ -64,12 +63,12 @@ Graph<std::string> task_1(const std::string file) {
   // Graph<std::string> cities;
   // fin = airports.csv
 
+  airports.insert_vertex("N/A", "N/A", "N/A");
+  
   // TODO: change back to a while loop.
   // Switching between if and while is
   // an easy way to reduce compilation time
-  airports.insert_vertex("N/A", "N/A", "N/A");
-  
-  while (getline(fin, line, '\n')) {
+  if (getline(fin, line, '\n')) { 
     std::stringstream s(line);
 
     //Origin_airport
@@ -100,11 +99,6 @@ Graph<std::string> task_1(const std::string file) {
     // Destination_state
     std::getline(s, word, '\"');
     std::string destination_state = word;
-
-    airports.insert_vertex(origin_airport, origin_city, origin_state);
-    airports.insert_vertex(destination_airport, destination_city,
-                           destination_state);
-
     std::getline(s, word, ','); // dummy
 
     // Distance
@@ -114,6 +108,13 @@ Graph<std::string> task_1(const std::string file) {
     // Cost
     std::getline(s, word, ',');
     int cost = stoi(word);
+    
+    airports.insert_vertex(origin_airport, origin_city, origin_state);
+    airports.insert_vertex(destination_airport, destination_city,
+                           destination_state);
+
+
+    
     airports.add_edge(origin_airport, destination_airport, distance, cost);
 
 
@@ -159,7 +160,6 @@ Graph<std::string> task_1(const std::string file) {
   airports.add_edge(v, v2, 337);
   airports.add_edge(v, v3, 1464);
   airports.add_edge(v, v4, 1846);
-  fin.close(); // this must happen, rain or shine
   airports.add_edge(v, v6, 2704);
   airports.add_edge(v3, v4, 802);
   airports.add_edge(v6, v4, 867);

@@ -2,9 +2,9 @@
 #define TASK_5_H
 
 #include "Graph.h"
-#include "Vertex.h"
-#include "Queue.h"
 #include "Queue.cpp"
+#include "Queue.h"
+#include "Vertex.h"
 
 #include <fstream>
 #include <iostream>
@@ -12,42 +12,39 @@
 #include <string>
 
 /*
-INT COUNT = 0
-WE HAVE VECTOR VERTICES
-GO THROUGH THE VERTICES VECTOR
-  // getVertex()
-
-INSIDE LOOP
-RESET COUNT TO 0
-WE HAVE VECTOR EDGES
-GO THROUGH ALL THE EDGES
-  // for(int i=0; i < getEdges().size(); i++)
-
-INSIDE THAT LOOP
-IF VERTEX = SRC OR DEST 
-  // Yes, considering "both outbound and inbound flights"
-INCREMENT COUNT BY 1
-
-WHEN OUTSIDE EDGE LOOP
-PRINT VERTEX 3 LETTER CODE, SOME SPACES, AND THEN THE COUNT NUMBER
-THEN YOU GO TO THE NEXT VERTEX IN THE VECTOR
-
+  Ben's PSEUDOCODE:
+  START
+  For all vertices
+    get the three letter code = v
+    for all vectors in "edges"
+      for every Edge in the vector
+        get the edge = e
+        get the source of the Edge, as a three letter code = e1
+        get the destination of the Edge, as a three letter code = e2
+        if three letter code equals source or destination
+          increment count
+          cout \t count
+        finally, cout everything else
+    END
 */
 
-
-template <typename T>
-void task_5(Graph<T> g) {
+template <typename T> void task_5(Graph<T> g) {
   int count = 0;
-  for(int i=0; i < g.getVertices().size(); i++) {
+  std::cout << "Every paragraph is an edge" << std::endl << std::endl;
+  for (int i = 0; i < g.getVertices().size(); i++) {
+      // for all vertices
+    
     T v = g.getVertices().at(i).getData();
-    for(int j=0; j < g.getEdges().size(); j++) {
-      for(int k=0; k < g.getEdges().at(j).size(); k++) {
+    
+    for (int j = 0; j < g.getEdges().size(); j++) {
+      for (int k = 0; k < g.getEdges().at(j).size(); k++) {
         Edge e = g.getEdges().at(j).at(k);
         T e1 = g.getVertices().at(e.src).getData();
         T e2 = g.getVertices().at(e.dest).getData();
-        if(v == e1 || v == e2) {
+        if (v == e1 || v == e2) {
           count++;
         }
+        std::cout << "Vertices[" << i << "] = " << v << std::endl << "edges[" << j << "][" << k << ']' << std::endl << "Origin_airport: " << e1 << ", Destination_airport: " << e2 << std::endl << "count: " << count << std::endl << std::endl;
       }
     }
   }

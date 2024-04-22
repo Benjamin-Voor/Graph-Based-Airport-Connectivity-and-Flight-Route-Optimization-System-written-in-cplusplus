@@ -10,6 +10,8 @@ public:
     void insert(const T& val); 
     void print() const;
     T delete_min();
+    bool isEmpty() const;
+    void decrease_key(int i, const T& val);
 
 private:
     std::vector<T> data;
