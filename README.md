@@ -8,6 +8,9 @@ We presented this in class at the end of the Spring 2024 semester. You can find 
 # Accreditations
 The .pdf files were not written by ourselves. Some .pdf's may lay out the assignment, and other .pdf's may include basic concepts to help us when we were stuck, which imo is a far better way to learn than plugging everything into ChatGPT.
 
+# Notes
+This was moved over from Replit manually because Replit kept throwing me errors and wouldn't use my linked GitHub account to do it automatically. 
+
 # Project Description
 For the rest of this README, I'm just gonna copy-paste from the assignments' .pdf so you know what we did:
 
